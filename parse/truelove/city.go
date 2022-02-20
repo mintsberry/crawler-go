@@ -2,7 +2,6 @@ package truelove
 
 import (
 	"crawler/engine"
-	"fmt"
 	"regexp"
 )
 
@@ -11,7 +10,7 @@ const cityRe = `<a href="(http://album.zhenai.com/u/[0-9]+") target="_blank">([^
 func ParseCity(content []byte) engine.ParseResult {
 	compile := regexp.MustCompile(cityRe)
 	matches := compile.FindAllSubmatch(content, -1)
-	fmt.Println(string(content))
+	result := engine.ParseResult{}
 	for _, match := range matches {
 		name := string(match[2])
 		result.Items = append(result.Items, match[2])
